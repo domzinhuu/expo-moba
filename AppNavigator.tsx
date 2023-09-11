@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Dashboard } from "./src/screens/Dashboard";
-import { Profile } from "./src/screens/Profile";
+import { DashboardScreen } from "./src/screens/Dashboard";
+import { ProfileScreen } from "./src/screens/Profile";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "./src/theme/base";
 import { TouchableHighlight, View } from "react-native";
@@ -46,7 +46,7 @@ const AppNavigator = () => {
             ),
           }}
           name="Dashboard"
-          component={Dashboard}
+          component={DashboardScreen}
         />
         <Tab.Screen
           options={{
@@ -55,7 +55,7 @@ const AppNavigator = () => {
             ),
           }}
           name="Perfil"
-          component={Profile}
+          component={ProfileScreen}
         />
       </Tab.Navigator>
     </>

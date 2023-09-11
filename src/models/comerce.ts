@@ -5,3 +5,5 @@ export type Comerce = {
   freeAmount: number;
   blockedAmount: number;
 };
+
+

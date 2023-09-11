@@ -15,6 +15,9 @@ export const theme = {
       500: "#999",
       700: "#333",
     },
+    lightGray: {
+      500: "#f1f1f1",
+    },
     white: {
       300: "#f8f8f8",
       500: "#fff",

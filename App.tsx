@@ -1,8 +1,6 @@
 import { StatusBar, StyleSheet } from "react-native";
 import { theme } from "./src/theme/base";
-import { NavigationContainer } from "@react-navigation/native";
-import AppNavigator from "./AppNavigator";
-import { Login } from "./src/screens/Login";
+import { Routes } from "./src/routes";
 
 export default function App() {
   return (
@@ -12,11 +10,7 @@ export default function App() {
         translucent
         backgroundColor={"transparent"}
       />
-
-      <Login />
-      {/* <NavigationContainer>
-        <AppNavigator />
-      </NavigationContainer> */}
+      <Routes />
     </>
   );
 }

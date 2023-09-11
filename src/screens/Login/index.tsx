@@ -1,28 +1,23 @@
-import { Image, Text, TextInput, TouchableHighlight, View } from "react-native";
-import { Title } from "../../components/Title";
+import { Image, View } from "react-native";
 import { styles } from "./styles";
-import Box from "../../shared/Box";
 import { Paragraph } from "../../components/Paragraph";
-import { Ionicons } from "@expo/vector-icons";
 import Card from "../../shared/Card";
-import { theme } from "../../theme/base";
-import { LinearGradient } from "expo-linear-gradient";
+import { CustomInput } from "../../components/CustomInput";
+import { LoginButton } from "./components/LoginButton";
+import { CustomLink } from "../../components/Link";
+import { AppVersion } from "../../shared/AppVersion";
+import { BackgroundGradient } from "../../shared/BackgroundGradient";
+import { useNavigation } from "@react-navigation/native";
+import { InputLogin } from "./components/InputLogin";
 
-export function Login() {
+export function LoginScreen() {
+  const navigation = useNavigation();
+
+  const handleCreateAccount = () => {
+    navigation.navigate("createAccount")
+  };
   return (
-    <LinearGradient
-    start={{x:1,y:0.3}}
-      end={{ x: 1, y: 1.1 }}
-
-      colors={[theme.colors.primary[500], theme.colors.secondary[500]]}
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: theme.colors.primary[500],
-        padding: 16,
-      }}
-    >
+    <BackgroundGradient>
       <Card.Container>
         <Card.Content>
           <View style={styles.loginContent}>
@@ -32,54 +27,27 @@ export function Login() {
               resizeMode="contain"
             />
             <Paragraph>Faça login para ter acesso a plataforma</Paragraph>
-            <TextInput
-              placeholder="E-mail"
-              style={{
-                width: "100%",
-                paddingHorizontal: 8,
-                height: 48,
-                fontSize: 16,
-                borderBottomColor: theme.colors.primary[300],
-                borderBottomWidth: 1,
-                marginTop: theme.space[32],
-              }}
-            />
-            <TextInput
-              placeholder="Senha"
-              secureTextEntry={true}
-              style={{
-                width: "100%",
-                paddingHorizontal: 8,
-                paddingVertical: 16,
-                fontSize: 16,
-                borderBottomColor: theme.colors.primary[300],
-                borderBottomWidth: 1,
-              }}
-            />
 
-            <TouchableHighlight style={styles.loginButton}>
-              <>
-                <Ionicons color={"#FFFFFF"} size={24} name="log-in" />
-                <Paragraph size="md" variant="white">
-                  Conectar
-                </Paragraph>
-              </>
-            </TouchableHighlight>
-            <Paragraph variant="primary">Esqueci minha senha</Paragraph>
-            <View
-              style={{
-                flexDirection: "row",
-                gap: 4,
-                marginTop: theme.space[32],
-              }}
-            >
+            <InputLogin placeholder="E-mail" />
+            <InputLogin placeholder="Senha" isPassword={true} />
+
+            <LoginButton />
+
+            <CustomLink text="Esqueci minha senha" variant="primary" />
+
+            <View style={styles.newAccount}>
               <Paragraph>Não possui conta?</Paragraph>
-              <Paragraph variant="primary">cadastre-se aqui</Paragraph>
+              <CustomLink
+                text="cadastre-se aqui"
+                variant="primary"
+                onPress={handleCreateAccount}
+              />
             </View>
-            <Text style={{ fontSize: 10 }}>0.1.28</Text>
+
+            <AppVersion />
           </View>
         </Card.Content>
       </Card.Container>
-    </LinearGradient>
+    </BackgroundGradient>
   );
 }

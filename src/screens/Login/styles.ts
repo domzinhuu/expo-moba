@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    width:'100%'
+    width: "100%",
   },
   logo: {
     width: 96,
@@ -15,15 +15,9 @@ export const styles = StyleSheet.create({
   loginContent: {
     alignItems: "center",
   },
-  loginButton: {
-    padding: 16,
-    backgroundColor:theme.colors.primary[500],
-    width:'100%',
-    borderRadius:8,
-    gap:8,
+  newAccount: {
     flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical:theme.space[32]
+    gap: 4,
+    marginTop: theme.space[32],
   },
 });

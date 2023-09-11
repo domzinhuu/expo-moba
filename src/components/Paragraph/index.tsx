@@ -11,10 +11,11 @@ import { theme } from "../../theme/base";
 
 type Size = "sm" | "md";
 type Weight = 700 | 400 | 300;
-type TextVariant =
+export type TextVariant =
   | "primary"
   | "secondary"
   | "white"
+  | "lightGray"
   | "black"
   | "gray"
   | "danger";

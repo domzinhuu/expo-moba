@@ -1,5 +1,5 @@
 import { Title } from "../../components/Title";
 
-export function Profile() {
+export function ProfileScreen() {
   return <Title>Perfil</Title>;
 }
