@@ -1,11 +1,12 @@
-import { ScrollView, TouchableOpacity, View } from "react-native";
+import { useState } from "react";
+import { ScrollView, View } from "react-native";
 import { styles } from "./styles";
-import { ComerceList } from "../../components/ComerceList";
-import { useLayoutEffect, useState } from "react";
-import { Comerce } from "../../models/comerce";
-import { ScheduledValueCard } from "../../components/ScheduledValueCard";
-import { NextPaymentsCard } from "../../components/NextPaymentsCard";
-import { mockComerces } from "../../utils/mocks";
+import { Comerce } from "@models/comerce";
+import { mockComerces } from "@utils/mocks";
+import { ScheduledValueCard } from "@components/ScheduledValueCard";
+import { NextPaymentsCard } from "@components/NextPaymentsCard";
+import { ComerceList } from "@components/ComerceList";
+
 
 export function DashboardScreen() {
   const [comerces, setComerces] = useState<Comerce[]>(mockComerces);

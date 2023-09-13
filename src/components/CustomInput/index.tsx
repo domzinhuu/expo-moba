@@ -1,7 +1,7 @@
 import { KeyboardTypeOptions, TextInput } from "react-native";
 import { styles } from "./styles";
 import { Paragraph } from "../Paragraph";
-import { theme } from "../../theme/base";
+import { theme }  from "src/theme/base"
 
 interface CustomInputProps {
   placeholder: string;

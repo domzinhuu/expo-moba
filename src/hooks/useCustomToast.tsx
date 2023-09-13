@@ -4,7 +4,7 @@ import {
   ToastTitle,
   ToastDescription,
 } from "@gluestack-ui/themed";
-import { theme } from "../theme/base";
+import { theme }  from "src/theme/base"
 
 export function useCustomToast() {
   const toast = useToast();

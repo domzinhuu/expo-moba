@@ -1,13 +1,5 @@
-import { PropsWithChildren } from "react";
-import {
-  useFonts,
-  Rubik_300Light,
-  Rubik_400Regular,
-  Rubik_700Bold,
-} from "@expo-google-fonts/rubik";
-
 import { Text } from "react-native";
-import { theme } from "../../theme/base";
+import { theme } from "src/theme/base";
 
 type Size = "sm" | "md";
 type Weight = 700 | 400 | 300;
@@ -35,21 +27,11 @@ export function Paragraph({
   disabled = false,
   children,
 }: ParagraphProps) {
-  const [fontLoaded, fontError] = useFonts({
-    Rubik_300Light,
-    Rubik_400Regular,
-    Rubik_700Bold,
-  });
-
   const fonts = {
     300: "Rubik_300Light",
     400: "Rubik_400Regular",
     700: "Rubik_700Bold",
   };
-
-  if (!fontLoaded && !fontError) {
-    return null;
-  }
 
   return (
     <Text

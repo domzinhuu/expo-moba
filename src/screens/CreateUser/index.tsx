@@ -1,23 +1,15 @@
 import { View } from "react-native";
-
-import { ComerceForm } from "../../components/ComerceForm";
-import { BackgroundGradient } from "../../shared/BackgroundGradient";
-import { Title } from "../../components/Title";
-import { useNavigation } from "@react-navigation/native";
-import { styles } from "./styles";
-import { ActionButton } from "./components/ActionButton";
-import { RepresentantForm } from "../../components/RepresentantForm";
-import { useContext, useMemo, useState } from "react";
-import { AcquirerForm } from "../../components/AcquirerForm";
-import { AccessForm } from "../../components/AccessForm";
-import UploadForm from "../../components/UploadForm";
-import {
-  CreateUserProvider,
-  createUserContext,
-} from "../../contexts/CreateUserContext";
-import { StepperProvider, stepperContext } from "../../contexts/StepperContext";
 import { Stepper } from "../../shared/Stepper";
-import { theme } from "../../theme/base";
+import { theme }  from "src/theme/base"
+import { ComerceForm } from "@components/ComerceForm";
+import { AcquirerForm } from "@components/AcquirerForm";
+import { RepresentantForm } from "@components/RepresentantForm";
+import UploadForm from "@components/UploadForm";
+import { AccessForm } from "@components/AccessForm";
+import { useContext, useMemo } from "react";
+import { StepperProvider, stepperContext } from "@contexts/StepperContext";
+import { CreateUserProvider, createUserContext } from "@contexts/CreateUserContext";
+import { styles } from "./styles";
 
 interface StepType {
   title: string;

@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import Box from "../../shared/Box";
-import { theme } from "../../theme/base";
+import { theme }  from "src/theme/base"
 import { Paragraph } from "../Paragraph";
 import { View } from "react-native";
 import { formatCurrency } from "../../utils/formatters";

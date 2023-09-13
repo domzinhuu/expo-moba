@@ -5,7 +5,7 @@ import {
   CreateUserCompanyData,
   CreateUserRepresentativeData,
   MachineData,
-} from "../models/user";
+} from "@models/user";
 
 interface CreateUserContextProps {
   companyData: CreateUserCompanyData;

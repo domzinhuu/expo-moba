@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { StyleSheet, View } from "react-native";
-import { theme } from "../theme/base";
+import { theme }  from "src/theme/base"
 
 const styles = StyleSheet.create({
   box: {

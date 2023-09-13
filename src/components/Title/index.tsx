@@ -1,13 +1,6 @@
 import { PropsWithChildren } from "react";
-import {
-  useFonts,
-  Rubik_300Light,
-  Rubik_400Regular,
-  Rubik_700Bold,
-} from "@expo-google-fonts/rubik";
-
 import { Text } from "react-native";
-import { theme } from "../../theme/base";
+import { theme } from "src/theme/base";
 
 type Size = "md" | "lg";
 type Weight = 700 | 400;
@@ -27,19 +20,10 @@ export function Title({
   disabled = false,
   children,
 }: TitleProps) {
-  const [fontLoaded, fontError] = useFonts({
-    Rubik_400Regular,
-    Rubik_700Bold,
-  });
-
   const fonts = {
     400: "Rubik_400Regular",
     700: "Rubik_700Bold",
   };
-
-  if (!fontLoaded && !fontError) {
-    return null;
-  }
 
   return (
     <Text

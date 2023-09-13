@@ -1,5 +1,6 @@
+import { UserDto } from "@dtos/UserDTO";
 import { PropsWithChildren, createContext, useState } from "react";
-import { UserDto } from "../dtos/UserDTO";
+
 
 interface AuthContextProps {
   user?: UserDto;

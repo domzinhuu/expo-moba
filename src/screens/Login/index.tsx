@@ -1,16 +1,16 @@
-import { Image, View } from "react-native";
-import { styles } from "./styles";
-import { Paragraph } from "../../components/Paragraph";
-
-import { LoginButton } from "./components/LoginButton";
-import { CustomLink } from "../../components/Link";
-import { AppVersion } from "../../shared/AppVersion";
+import { Image, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { InputLogin } from "./components/InputLogin";
 import { useState } from "react";
-import { api } from "../../services/api";
-import { AppError } from "../../utils/AppErrors";
-import { useCustomToast } from "../../hooks/useCustomToast";
+import { AppVersion } from "../../shared/AppVersion";
+import { styles } from "./styles";
+import { useCustomToast } from "@hooks/useCustomToast";
+import { api } from "@services/api";
+import { AppError } from "@utils/AppErrors";
+import { Paragraph } from "@components/Paragraph";
+import { InputLogin } from "./components/InputLogin";
+import { LoginButton } from "./components/LoginButton";
+import { CustomLink } from "@components/Link";
+import { theme } from "src/theme/base";
 
 export function LoginScreen() {
   const navigation = useNavigation();
@@ -52,9 +52,11 @@ export function LoginScreen() {
             style={styles.logo}
             resizeMode="contain"
           />
+         
           <Paragraph size="md">
             Faça login para ter acesso a plataforma
           </Paragraph>
+
           <View style={styles.formGroups}>
             <InputLogin
               placeholder="E-mail"

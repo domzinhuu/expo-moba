@@ -5,7 +5,7 @@ import { Picker } from "@react-native-picker/picker";
 import { useContext, useState } from "react";
 import { createUserContext } from "../../contexts/CreateUserContext";
 import { CreateUserCompanyData } from "../../models/user";
-import { theme } from "../../theme/base";
+import { theme }  from "src/theme/base"
 
 export function ComerceForm() {
   const { companyData, onSetCompanyData } = useContext(createUserContext);

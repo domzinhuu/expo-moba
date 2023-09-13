@@ -9,8 +9,12 @@ const config = createConfig({
     ...defaultConfig.theme.tokens,
     colors: {
       ...defaultConfig.theme.tokens.colors,
-      primary600_alpha_10: "#1a91ff1a",
-      primary600_alpha_20: "#1a91ff33",
+      primary300: "#913feb",
+      primary500: "#7634bf",
+      primary700: "#441f6e",
+      secondary300: "#48d4d0",
+      secondary500: "#3acbc7",
+      secondary700: "#288582",
     },
   },
 
@@ -31,6 +35,8 @@ const config = createConfig({
     },
   },
 });
+
+export { config };
 
 // Get the type of Config
 type ConfigType = typeof config;

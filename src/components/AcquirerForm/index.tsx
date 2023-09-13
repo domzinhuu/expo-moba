@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { CustomInput } from "../CustomInput";
 import { Paragraph } from "../Paragraph";
-import { theme } from "../../theme/base";
+import { theme }  from "src/theme/base"
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { useCallback, useContext, useState } from "react";

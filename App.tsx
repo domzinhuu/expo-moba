@@ -1,23 +1,34 @@
 import { StatusBar, StyleSheet } from "react-native";
 import { theme } from "./src/theme/base";
-import { Routes } from "./src/routes";
 import { GluestackUIProvider, config } from "@gluestack-ui/themed";
-import { AuthProvider } from "./src/contexts/AuthContext";
+import { Routes } from "@routes/index";
+import { AuthProvider } from "@contexts/AuthContext";
+import {
+  useFonts,
+  Rubik_300Light,
+  Rubik_400Regular,
+  Rubik_700Bold,
+} from "@expo-google-fonts/rubik";
+import { Loading } from "@components/Loading";
 
 export default function App() {
+  const [fontLoaded, fontError] = useFonts({
+    Rubik_300Light,
+    Rubik_400Regular,
+    Rubik_700Bold,
+  });
+
+  const fontLoaded1 = false;
+
   return (
-    <>
-      <GluestackUIProvider config={config.theme}>
-        <StatusBar
-          barStyle="dark-content"
-          translucent
-          backgroundColor={"transparent"}
-        />
-        <AuthProvider>
-          <Routes />
-        </AuthProvider>
-      </GluestackUIProvider>
-    </>
+    <GluestackUIProvider config={config.theme}>
+      <StatusBar
+        barStyle="dark-content"
+        translucent
+        backgroundColor={"transparent"}
+      />
+      <AuthProvider>{fontLoaded1 ? <Routes /> : <Loading />}</AuthProvider>
+    </GluestackUIProvider>
   );
 }
 
