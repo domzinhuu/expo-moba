@@ -181,7 +181,7 @@ function EmptyList() {
     <View
       style={{ paddingTop: 48, justifyContent: "center", alignItems: "center" }}
     >
-      <Paragraph size="md" variant="white">
+      <Paragraph size="md">
         Nenhuma maquininha cadastrada.
       </Paragraph>
     </View>

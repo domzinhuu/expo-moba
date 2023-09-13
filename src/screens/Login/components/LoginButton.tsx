@@ -1,11 +1,15 @@
-import { StyleSheet, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { theme } from "../../../theme/base";
 import { Ionicons } from "@expo/vector-icons";
 import { Paragraph } from "../../../components/Paragraph";
 
-export function LoginButton() {
+interface LoginButtonProps {
+  onClick: () => void;
+}
+export function LoginButton({ onClick }: LoginButtonProps) {
   return (
     <TouchableOpacity
+      onPress={() => onClick()}
       accessibilityLabel="Botão para fazer login"
       style={styles.loginButton}
       activeOpacity={0.8}

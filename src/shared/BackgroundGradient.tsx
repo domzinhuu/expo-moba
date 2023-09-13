@@ -18,7 +18,7 @@ export function BackgroundGradient({
       start={{ x: 1, y: 0.3 }}
       end={{ x: 1, y: 1.1 }}
       colors={[theme.colors.primary[500], theme.colors.secondary[500]]}
-      style={[styles.gradient, { justifyContent: position }]}
+      style={[styles.gradient]}
     >
       {children}
     </LinearGradient>

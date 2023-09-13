@@ -3,12 +3,12 @@ import { theme } from "../../theme/base";
 
 export const styles = StyleSheet.create({
   container: {
-    height:500,
-    borderRadius:6,
-    flex:1,
+    borderRadius: 6,
+    flex: 1,
   },
-  acquirerContent:{
-    
+  acquirerContent: {
+    flex: 1,
+    justifyContent:"center",
   },
   newAcquirer: {
     backgroundColor: theme.colors.primary[500],
@@ -17,12 +17,11 @@ export const styles = StyleSheet.create({
     gap: 8,
     justifyContent: "center",
     alignItems: "center",
-    padding: 8,
-    paddingHorizontal: 16,
+    padding: 12,
     borderRadius: 6,
   },
   item: {
-    backgroundColor:theme.colors.white[500],
+    backgroundColor: theme.colors.white[500],
     borderRadius: 6,
     marginTop: 16,
   },

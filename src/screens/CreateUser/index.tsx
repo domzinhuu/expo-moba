@@ -17,6 +17,7 @@ import {
 } from "../../contexts/CreateUserContext";
 import { StepperProvider, stepperContext } from "../../contexts/StepperContext";
 import { Stepper } from "../../shared/Stepper";
+import { theme } from "../../theme/base";
 
 interface StepType {
   title: string;
@@ -53,22 +54,17 @@ function CreateUser() {
   const totalStep = useMemo(() => Object.keys(steps).length, [steps]);
 
   function handleSaveUser() {
-    console.log("Ok enviar para salvar");
-    console.log("Company Data:",companyData)
-    console.log("Combo:",combo)
-    console.log("Representative:",representativeData)
-    console.log("Access Data:",accessData)
     setStep(1);
   }
 
   return (
-    <BackgroundGradient>
+    <View style={{ flex: 1, backgroundColor: theme.colors.primary[700] }}>
       <View style={styles.container}>
         <Stepper.Title>{step.title}</Stepper.Title>
         <Stepper.Content>{step.component}</Stepper.Content>
         <Stepper.Actions totalStep={totalStep} onFinish={handleSaveUser} />
       </View>
-    </BackgroundGradient>
+    </View>
   );
 }
 

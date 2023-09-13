@@ -1,13 +1,14 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { AppRoutes } from "./app.routes";
 import { AdminRoutes } from "./admin.routes";
-import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export function Routes() {
-  const [isLogged, setIsLogged] = useState(false);
+  const { token } = useAuth();
+
   return (
     <NavigationContainer>
-      {(isLogged && <AdminRoutes />) || <AppRoutes />}
+      {(token && <AdminRoutes />) || <AppRoutes />}
     </NavigationContainer>
   );
 }

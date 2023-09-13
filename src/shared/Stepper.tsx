@@ -18,9 +18,9 @@ export const Stepper = {
     </View>
   ),
   Content: ({ children }: PropsWithChildren) => (
-    <ScrollView>
-      <View style={styles.stepContent}>{children}</View>
-    </ScrollView>
+    <View style={styles.stepContent}>
+      <ScrollView>{children}</ScrollView>
+    </View>
   ),
   Actions: ({ totalStep = 1, onFinish }: StepperActionProps) => {
     const { goBack } = useNavigation();
@@ -51,17 +51,19 @@ const styles = StyleSheet.create({
     padding: 24,
     marginTop: theme.space[32],
     width: "100%",
+    height: 100,
   },
   actionBottom: {
     flexDirection: "row",
     gap: 4,
     padding: 8,
     paddingVertical: 16,
+    height: 100,
   },
   stepContent: {
     padding: 16,
     width: "100%",
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.2)",
+    backgroundColor: theme.colors.white[500],
   },
 });

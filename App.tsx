@@ -1,16 +1,22 @@
 import { StatusBar, StyleSheet } from "react-native";
 import { theme } from "./src/theme/base";
 import { Routes } from "./src/routes";
+import { GluestackUIProvider, config } from "@gluestack-ui/themed";
+import { AuthProvider } from "./src/contexts/AuthContext";
 
 export default function App() {
   return (
     <>
-      <StatusBar
-        barStyle="light-content"
-        translucent
-        backgroundColor={"transparent"}
-      />
-      <Routes />
+      <GluestackUIProvider config={config.theme}>
+        <StatusBar
+          barStyle="dark-content"
+          translucent
+          backgroundColor={"transparent"}
+        />
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
+      </GluestackUIProvider>
     </>
   );
 }

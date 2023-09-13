@@ -9,11 +9,17 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
   logo: {
-    width: 96,
-    height: 96,
+    width: 196,
+    height: 196,
+    marginTop:48
   },
   loginContent: {
     alignItems: "center",
+    justifyContent:"space-between",
+    flex:1
+  },
+  formGroups:{
+    width:'100%'
   },
   newAccount: {
     flexDirection: "row",
