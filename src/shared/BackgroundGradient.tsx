@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { PropsWithChildren } from "react";
-import { theme }  from "src/theme/base"
+import { theme }  from "@theme/base"
 import { StyleSheet } from "react-native";
 
 type Position = "center" | "space-between" | "flex-start";

@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { Title } from "../Title";
 import { styles } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
-import { theme }  from "src/theme/base"
+import { theme }  from "@theme/base"
 import { Comerce } from "../../models/comerce";
 import { ComerceItem } from "./components/ComerceItem";
 

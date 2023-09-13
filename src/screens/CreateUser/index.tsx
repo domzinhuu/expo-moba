@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { Stepper } from "../../shared/Stepper";
-import { theme }  from "src/theme/base"
+import { theme }  from "@theme/base"
 import { ComerceForm } from "@components/ComerceForm";
 import { AcquirerForm } from "@components/AcquirerForm";
 import { RepresentantForm } from "@components/RepresentantForm";

@@ -1,5 +1,5 @@
 import { Text } from "react-native";
-import { theme } from "src/theme/base";
+import { theme } from "@theme/base";
 
 type Size = "sm" | "md";
 type Weight = 700 | 400 | 300;

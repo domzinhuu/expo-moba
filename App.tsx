@@ -1,5 +1,5 @@
 import { StatusBar, StyleSheet } from "react-native";
-import { theme } from "./src/theme/base";
+import { theme } from "@theme/base";
 import { GluestackUIProvider, config } from "@gluestack-ui/themed";
 import { Routes } from "@routes/index";
 import { AuthProvider } from "@contexts/AuthContext";
@@ -18,8 +18,6 @@ export default function App() {
     Rubik_700Bold,
   });
 
-  const fontLoaded1 = false;
-
   return (
     <GluestackUIProvider config={config.theme}>
       <StatusBar
@@ -27,7 +25,7 @@ export default function App() {
         translucent
         backgroundColor={"transparent"}
       />
-      <AuthProvider>{fontLoaded1 ? <Routes /> : <Loading />}</AuthProvider>
+      <AuthProvider>{fontLoaded ? <Routes /> : <Loading />}</AuthProvider>
     </GluestackUIProvider>
   );
 }

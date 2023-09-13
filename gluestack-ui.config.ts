@@ -1,7 +1,7 @@
 // gluestack-ui.config.ts
 
 import { createConfig, config as defaultConfig } from "@gluestack-ui/themed";
-import { theme } from "./src/theme/base";
+import { theme } from "@theme/base";
 
 const config = createConfig({
   ...defaultConfig.theme,

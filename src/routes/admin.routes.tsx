@@ -1,21 +1,20 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { theme }  from "src/theme/base"
+import { theme } from "@theme/base";
 import { TouchableHighlight } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { DashboardScreen } from "../screens/Dashboard";
 import { ProfileScreen } from "../screens/Profile";
-import { config } from "@gluestack-ui/themed";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const screenOptions = {
-  headerTintColor: config.theme.tokens.colors.white,
-  tabBarInactiveTintColor: config.theme.tokens.colors.white,
-  tabBarActiveTintColor: config.theme.tokens.colors.secondary500,
+  headerTintColor: "$white",
+  tabBarInactiveTintColor: "$white",
+  tabBarActiveTintColor: "$secondary500",
   tabBarStyle: {
-    backgroundColor: config.theme.tokens.colors.primary500,
+    backgroundColor: "$primary500",
   },
   headerStyle: {
-    backgroundColor: config.theme.tokens.colors.primary500,
+    backgroundColor: "primary500",
   },
 };
 
@@ -33,11 +32,7 @@ export function AdminRoutes() {
             onPress={handleLogoutPress}
             style={{ paddingHorizontal: 16 }}
           >
-            <Ionicons
-              name="log-out-outline"
-              size={24}
-              color={config.theme.tokens.colors.white}
-            />
+            <Ionicons name="log-out-outline" size={24} color={"$white"} />
           </TouchableHighlight>
         ),
       }}

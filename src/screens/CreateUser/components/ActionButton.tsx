@@ -1,7 +1,7 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Paragraph, TextVariant } from "@components/Paragraph";
-import { theme } from "src/theme/base";
+import { theme } from "@theme/base";
 
 interface ActionButtonProps {
   label: string;

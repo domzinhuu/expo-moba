@@ -10,7 +10,7 @@ import { Paragraph } from "@components/Paragraph";
 import { InputLogin } from "./components/InputLogin";
 import { LoginButton } from "./components/LoginButton";
 import { CustomLink } from "@components/Link";
-import { theme } from "src/theme/base";
+import { theme } from "@theme/base";
 
 export function LoginScreen() {
   const navigation = useNavigation();

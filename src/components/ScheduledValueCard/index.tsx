@@ -2,7 +2,7 @@ import { View } from "react-native";
 import Box from "../../shared/Box";
 import { Paragraph } from "../Paragraph";
 import { Ionicons } from "@expo/vector-icons";
-import { theme }  from "src/theme/base"
+import { theme }  from "@theme/base"
 import { formatCurrency } from "../../utils/formatters";
 
 interface ScheduledValueCardProps {

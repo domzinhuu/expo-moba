@@ -1,5 +1,5 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { theme }  from "src/theme/base"
+import { theme }  from "@theme/base"
 import { Ionicons } from "@expo/vector-icons";
 import { Paragraph } from "../../../components/Paragraph";
 

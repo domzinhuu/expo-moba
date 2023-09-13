@@ -3,7 +3,7 @@ import { PropsWithChildren, useContext } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Title } from "../components/Title";
 import { ActionButton } from "../screens/CreateUser/components/ActionButton";
-import { theme }  from "src/theme/base"
+import { theme }  from "@theme/base"
 import { stepperContext } from "../contexts/StepperContext";
 
 interface StepperActionProps {

@@ -1,5 +1,5 @@
 import { StyleSheet, TextInput } from "react-native";
-import { theme }  from "src/theme/base"
+import { theme }  from "@theme/base"
 
 interface InputLoginProps {
   placeholder: string;

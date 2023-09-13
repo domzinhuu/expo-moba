@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Paragraph } from "../Paragraph";
-import { theme }  from "src/theme/base"
+import { theme }  from "@theme/base"
 import { Ionicons } from "@expo/vector-icons";
 
 function UploadForm() {
