@@ -4,23 +4,26 @@ import { TouchableHighlight } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { DashboardScreen } from "../screens/Dashboard";
 import { ProfileScreen } from "../screens/Profile";
+import { useAuth } from "@hooks/useAuth";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const screenOptions = {
-  headerTintColor: "$white",
-  tabBarInactiveTintColor: "$white",
-  tabBarActiveTintColor: "$secondary500",
+  headerTintColor: theme.colors.white[500],
+  tabBarInactiveTintColor: theme.colors.white[500],
+  tabBarActiveTintColor: theme.colors.secondary[500],
   tabBarStyle: {
-    backgroundColor: "$primary500",
+    backgroundColor: theme.colors.primary[500],
   },
   headerStyle: {
-    backgroundColor: "primary500",
+    backgroundColor: theme.colors.primary[500],
   },
 };
 
 export function AdminRoutes() {
+  const { signOut } = useAuth();
+
   const handleLogoutPress = () => {
-    console.log("Sair pressionado");
+    signOut();
   };
 
   return (
@@ -32,7 +35,11 @@ export function AdminRoutes() {
             onPress={handleLogoutPress}
             style={{ paddingHorizontal: 16 }}
           >
-            <Ionicons name="log-out-outline" size={24} color={"$white"} />
+            <Ionicons
+              name="log-out-outline"
+              size={24}
+              color={theme.colors.white[500]}
+            />
           </TouchableHighlight>
         ),
       }}
