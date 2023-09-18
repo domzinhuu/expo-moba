@@ -3,7 +3,7 @@ import Box from "../../shared/Box";
 import { Paragraph } from "../Paragraph";
 import { Ionicons } from "@expo/vector-icons";
 import { theme }  from "@theme/base"
-import { formatCurrency } from "../../utils/formatters";
+import { formatCurrency, formatDate } from "../../utils/formatters";
 
 interface ScheduledValueCardProps {
   totalValue?: number;
@@ -24,7 +24,7 @@ export function ScheduledValueCard({
         </Paragraph>
         <View style={{ flexDirection: "row" }}>
           <Paragraph>Total a receber até: </Paragraph>
-          <Paragraph weight={700}>{limitDate}</Paragraph>
+          <Paragraph weight={700}>{formatDate(limitDate)}</Paragraph>
         </View>
       </Box.Content>
       {icon && (

@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { Image, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { AppVersion } from "../../shared/AppVersion";
@@ -8,7 +8,6 @@ import { Paragraph } from "@components/Paragraph";
 import { InputLogin } from "./components/InputLogin";
 import { LoginButton } from "./components/LoginButton";
 import { CustomLink } from "@components/Link";
-import { Image } from "@gluestack-ui/themed";
 import { useAuth } from "@hooks/useAuth";
 import { AppError } from "@utils/AppErrors";
 
@@ -53,6 +52,7 @@ export function LoginScreen() {
         <View style={styles.loginContent}>
           <Image
             source={require("../../../assets/logo.png")}
+            alt="Login screen"
             style={styles.logo}
             resizeMode="contain"
           />

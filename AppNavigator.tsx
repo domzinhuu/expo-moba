@@ -2,8 +2,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { DashboardScreen } from "./src/screens/Dashboard";
 import { ProfileScreen } from "./src/screens/Profile";
 import { Ionicons } from "@expo/vector-icons";
-import { theme } from "./@theme/base";
 import { TouchableHighlight, View } from "react-native";
+import { theme } from "@theme/base";
 
 const Tab = createBottomTabNavigator();
 

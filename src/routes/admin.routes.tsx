@@ -2,9 +2,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { theme } from "@theme/base";
 import { TouchableHighlight } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { DashboardScreen } from "../screens/Dashboard";
 import { ProfileScreen } from "../screens/Profile";
 import { useAuth } from "@hooks/useAuth";
+import { StatusBar } from "expo-status-bar";
+import { DashboardScreen } from "@screens/Dashboard";
+import { LogoutButton } from "@shared/Logout";
+import { ChartScreen } from "@screens/Charts";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const screenOptions = {
@@ -22,46 +25,60 @@ const screenOptions = {
 export function AdminRoutes() {
   const { signOut } = useAuth();
 
-  const handleLogoutPress = () => {
-    signOut();
-  };
-
   return (
-    <Navigator
-      screenOptions={{
-        ...screenOptions,
-        headerRight: () => (
-          <TouchableHighlight
-            onPress={handleLogoutPress}
-            style={{ paddingHorizontal: 16 }}
-          >
-            <Ionicons
-              name="log-out-outline"
-              size={24}
-              color={theme.colors.white[500]}
-            />
-          </TouchableHighlight>
-        ),
-      }}
-    >
-      <Screen
-        component={DashboardScreen}
-        name="Dashboard"
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="grid" size={size} color={color} />
-          ),
+    <>
+      <StatusBar style="light" translucent backgroundColor={"transparent"} />
+
+      <Navigator
+        screenOptions={{
+          ...screenOptions,
         }}
-      />
-      <Screen
-        component={ProfileScreen}
-        name="Perfil"
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="people-circle" size={size} color={color} />
-          ),
-        }}
-      />
-    </Navigator>
+      >
+        <Screen
+          component={DashboardScreen}
+          name="Dashboard"
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="grid-outline" size={24} color={color} />
+            ),
+          }}
+        />
+        <Screen
+          component={ChartScreen}
+          name="Gráficos"
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="bar-chart-outline" size={24} color={color} />
+            ),
+          }}
+        />
+        <Screen
+          component={ProfileScreen}
+          name="Perfil"
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="people-circle-outline" size={24} color={color} />
+            ),
+          }}
+        />
+
+        <Screen
+          name="Sair"
+          component={LogoutButton}
+          listeners={{
+            tabPress: (e) => {
+              e.preventDefault();
+              signOut();
+            },
+          }}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="log-out-outline" size={24} color={color} />
+            ),
+          }}
+        />
+      </Navigator>
+    </>
   );
 }

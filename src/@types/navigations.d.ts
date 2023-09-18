@@ -4,6 +4,7 @@ export declare global {
       createAccount: undefined;
       login: undefined;
       dashboard: undefined;
+      comerceDetail: undefined;
       profile: undefined;
     }
   }

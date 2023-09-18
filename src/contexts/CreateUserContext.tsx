@@ -38,7 +38,6 @@ export function CreateUserProvider({ children }: PropsWithChildren) {
 
   function handleSetCompanyData(data: CreateUserCompanyData) {
     setCompanyData(data);
-    console.log(data);
   }
   function handleSetReprData(data: CreateUserRepresentativeData) {
     setReprData(data);
@@ -57,7 +56,6 @@ export function CreateUserProvider({ children }: PropsWithChildren) {
       }
       return newValue;
     });
-    console.log(combo.added);
   }
 
   function handleDeleteAcquirer(key: string, acqDoc: string) {

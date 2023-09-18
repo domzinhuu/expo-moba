@@ -1,13 +1,13 @@
-import { View } from "@gluestack-ui/themed";
-import { Title } from "../../components/Title";
+import { View } from "react-native";
 import { styles } from "./styles";
+import { Title } from "@components/Title";
 import { Paragraph } from "@components/Paragraph";
 import { Ionicons } from "@expo/vector-icons";
 
-export function ProfileScreen() {
+export function ChartScreen() {
   return (
     <View style={styles.container}>
-      <Ionicons style={{marginBottom:24}} size={36} name="settings-outline" />
+      <Ionicons style={{marginBottom:24}} size={36} name="bar-chart-outline" />
       <Title>Em desenvolvimento</Title>
       <Paragraph>Está tela está em desenvolvimento</Paragraph>
     </View>
