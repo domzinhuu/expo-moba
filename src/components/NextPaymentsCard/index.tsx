@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import Box from "../../shared/Box";
-import { theme }  from "@theme/base"
+import { theme } from "@theme/base";
 import { Paragraph } from "../Paragraph";
 import { View } from "react-native";
 import { formatCurrency } from "../../utils/formatters";
@@ -26,15 +26,13 @@ export function NextPaymentsCard({
         <Paragraph size="md" weight={700}>
           Pagamento Previstos
         </Paragraph>
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 16 }}>
           <Paragraph>{currentPaymentDate}: </Paragraph>
-          <Paragraph weight={700}>
-            {formatCurrency(currentPaymentValue)}
-          </Paragraph>
+          <Paragraph weight={700} size="md">{formatCurrency(currentPaymentValue)}</Paragraph>
         </View>
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 16 }}>
           <Paragraph>{nextPaymentDate}: </Paragraph>
-          <Paragraph weight={700}>{formatCurrency(nextPaymentValue)}</Paragraph>
+          <Paragraph weight={700} size="md">{formatCurrency(nextPaymentValue)}</Paragraph>
         </View>
       </Box.Content>
       {icon && (

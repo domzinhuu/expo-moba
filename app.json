@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "nodeb-mobile",
-    "slug": "nodeb-mobile",
-    "version": "1.0.0",
+    "name": "Nodeb",
+    "slug": "nodeb",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -11,20 +11,25 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.msrsoftware.nodeb"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.msrsoftware.nodeb"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "814dbd56-8f7f-4d7e-a198-84e6d4641737"
+      }
     }
   }
 }

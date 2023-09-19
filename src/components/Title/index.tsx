@@ -21,8 +21,8 @@ export function Title({
   children,
 }: TitleProps) {
   const fonts = {
-    400: "Rubik_400Regular",
-    700: "Rubik_700Bold",
+    400: "Roboto_400Regular",
+    700: "Roboto_700Bold",
   };
 
   return (

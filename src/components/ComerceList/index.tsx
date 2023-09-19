@@ -43,7 +43,9 @@ export function ComerceList({
             <Paragraph variant="white">
               {currentFilter === "Personalizado"
                 ? "Periodo Personalizado"
-                : `Últimos ${currentFilter}`}
+                : currentFilter
+                ? `Últimos ${currentFilter}`
+                : "Período total"}
             </Paragraph>
           </View>
           {headerIcon && (

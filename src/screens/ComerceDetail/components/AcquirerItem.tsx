@@ -1,12 +1,12 @@
-import { Paragraph } from "@components/Paragraph";
-import { View } from "@gluestack-ui/themed";
-import { Acquirer, ConsolidateAcquirer } from "@models/dashboard";
-import { theme } from "@theme/base";
-import { formatCurrency, formatDate } from "@utils/formatters";
-import { StyleSheet } from "react-native";
+import { Paragraph } from "@components/Paragraph"
+import { View } from "@gluestack-ui/themed"
+import { Acquirer, ConsolidateAcquirer } from "@models/dashboard"
+import { theme } from "@theme/base"
+import { formatCurrency, formatDate } from "@utils/formatters"
+import { StyleSheet } from "react-native"
 
 interface AcquirerItemProps {
-  acquirer: Acquirer;
+  acquirer: Acquirer
 }
 
 export function AcquirerItem({ acquirer }: AcquirerItemProps) {
@@ -26,26 +26,22 @@ export function AcquirerItem({ acquirer }: AcquirerItemProps) {
 
       <View style={styles.acquirerItemBody}>
         <View style={styles.acquirerItemBodyRow}>
-          <Paragraph size="md">Valor a receber</Paragraph>
-          <Paragraph size="md" weight={700}>
-            {formatCurrency(acquirer.valorReceber)}
-          </Paragraph>
+          <Paragraph>Valor a receber</Paragraph>
+          <Paragraph>{formatCurrency(acquirer.valorReceber)}</Paragraph>
         </View>
         <View style={styles.acquirerItemBodyRow}>
-          <Paragraph size="md" variant="danger">Valor comprometido</Paragraph>
-          <Paragraph size="md" variant="danger" weight={700}>
+          <Paragraph variant="danger">Valor comprometido</Paragraph>
+          <Paragraph variant="danger">
             - {formatCurrency(acquirer.valorPagar)}
           </Paragraph>
         </View>
         <View style={styles.acquirerItemBodyLastRow}>
-          <Paragraph size="md">Valor total</Paragraph>
-          <Paragraph size="md" weight={700}>
-            {formatCurrency(acquirer.valorTotal)}
-          </Paragraph>
+          <Paragraph weight={700}>Valor total</Paragraph>
+          <Paragraph size="md" weight={700}>{formatCurrency(acquirer.valorTotal)}</Paragraph>
         </View>
       </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -76,7 +72,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 16,
+    paddingVertical: 8,
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.white[700],
   },
@@ -87,4 +83,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 16,
   },
-});
+})

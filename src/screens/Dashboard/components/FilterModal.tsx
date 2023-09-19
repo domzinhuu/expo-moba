@@ -23,13 +23,8 @@ import { useDashboard } from "@hooks/useDashboard";
 import { theme } from "@theme/base";
 import { formatDate } from "@utils/formatters";
 import { DateTime } from "luxon";
-import { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  TouchableHighlight,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { useState } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 enum Period {
@@ -85,7 +80,6 @@ export function FilterModal({ isOpen, onClose }: FilterModal) {
     setEndDatePickerVisibility(false);
     handleChangePeriod(period);
     await getFilteredData(start, end);
-
   };
 
   const handleCleanForm = async () => {
@@ -160,10 +154,7 @@ export function FilterModal({ isOpen, onClose }: FilterModal) {
                 <SelectItem label="7 Dias" value="7 Dias" />
                 <SelectItem label="30 Dias" value="30 Dias" />
                 <SelectItem label="90 Dias" value="90 Dias" />
-                <SelectItem
-                  label="Personalizado"
-                  value="Personalizado"
-                />
+                <SelectItem label="Personalizado" value="Personalizado" />
               </SelectContent>
             </SelectPortal>
           </Select>

@@ -1,17 +1,18 @@
-import { TouchableHighlight, TouchableOpacity, View } from "react-native";
-import { styles } from "./styles";
-import { Paragraph } from "../../../Paragraph";
-import { formatCurrency, formatDocument } from "../../../../utils/formatters";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigatorParamList } from "@screens/Dashboard";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { TouchableHighlight, TouchableOpacity, View } from "react-native"
+import { styles } from "./styles"
+import { Paragraph } from "../../../Paragraph"
+import { formatCurrency, formatDocument } from "../../../../utils/formatters"
+import { useNavigation } from "@react-navigation/native"
+import { StackNavigatorParamList } from "@screens/Dashboard"
+import { NativeStackNavigationProp } from "@react-navigation/native-stack"
+import { Divider } from "@gluestack-ui/themed"
 
 interface ComerceItemProps {
-  ecName: string;
-  ecDoc: string;
-  totalValue: number;
-  freeAmount: number;
-  blockedAmount: number;
+  ecName: string
+  ecDoc: string
+  totalValue: number
+  freeAmount: number
+  blockedAmount: number
 }
 
 export function ComerceItem({
@@ -22,10 +23,10 @@ export function ComerceItem({
   blockedAmount,
 }: ComerceItemProps) {
   const navigation =
-    useNavigation<NativeStackNavigationProp<StackNavigatorParamList>>();
+    useNavigation<NativeStackNavigationProp<StackNavigatorParamList>>()
 
   function handleDetailNavigation() {
-    navigation.navigate("comerceDetail", { ecDocument: ecDoc });
+    navigation.navigate("comerceDetail", { ecDocument: ecDoc })
   }
 
   return (
@@ -33,31 +34,28 @@ export function ComerceItem({
       <View style={styles.cardBody}>
         <View>
           <View style={styles.tableRowHeader}>
-            <Paragraph size="md">{ecName}</Paragraph>
+            <Paragraph>{ecName}</Paragraph>
             <Paragraph size="md" weight={700}>
               {formatDocument(ecDoc)}
             </Paragraph>
+            <Divider my={4} bgColor="$purple100"/>
           </View>
           <View style={styles.tableRow}>
-            <Paragraph size="md">Total a receber:</Paragraph>
-            <Paragraph size="md" weight={700}>
-              {formatCurrency(freeAmount)}
-            </Paragraph>
+            <Paragraph>Total a receber:</Paragraph>
+            <Paragraph>{formatCurrency(freeAmount)}</Paragraph>
           </View>
           <View style={styles.tableRow}>
-            <Paragraph size="md">Total comprometido:</Paragraph>
-            <Paragraph size="md" weight={700} variant="danger">
+            <Paragraph>Total comprometido:</Paragraph>
+            <Paragraph variant="danger">
               - {formatCurrency(blockedAmount)}
             </Paragraph>
           </View>
           <View style={styles.tableRow}>
-            <Paragraph size="md">Valor total:</Paragraph>
-            <Paragraph size="md" weight={700}>
-              {formatCurrency(totalValue)}
-            </Paragraph>
+            <Paragraph weight={700}>Valor total:</Paragraph>
+            <Paragraph size="md" weight={700}>{formatCurrency(totalValue)}</Paragraph>
           </View>
         </View>
       </View>
     </TouchableOpacity>
-  );
+  )
 }

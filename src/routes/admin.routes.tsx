@@ -16,6 +16,7 @@ const screenOptions = {
   tabBarActiveTintColor: theme.colors.secondary[500],
   tabBarStyle: {
     backgroundColor: theme.colors.primary[500],
+    height:64
   },
   headerStyle: {
     backgroundColor: theme.colors.primary[500],
@@ -32,6 +33,7 @@ export function AdminRoutes() {
       <Navigator
         screenOptions={{
           ...screenOptions,
+          
         }}
       >
         <Screen

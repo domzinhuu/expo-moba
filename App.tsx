@@ -1,22 +1,22 @@
-import { StatusBar, StyleSheet } from "react-native";
-import { theme } from "@theme/base";
-import { GluestackUIProvider, config } from "@gluestack-ui/themed";
-import { Routes } from "@routes/index";
-import { AuthProvider } from "@contexts/AuthContext";
+import { StatusBar, StyleSheet } from "react-native"
+import { theme } from "@theme/base"
+import { GluestackUIProvider, config } from "@gluestack-ui/themed"
+import { Routes } from "@routes/index"
+import { AuthProvider } from "@contexts/AuthContext"
 import {
   useFonts,
-  Rubik_300Light,
-  Rubik_400Regular,
-  Rubik_700Bold,
-} from "@expo-google-fonts/rubik";
-import { Loading } from "@components/Loading";
+  Roboto_300Light,
+  Roboto_400Regular,
+  Roboto_700Bold,
+} from "@expo-google-fonts/roboto"
+import { Loading } from "@components/Loading"
 
 export default function App() {
   const [fontLoaded, fontError] = useFonts({
-    Rubik_300Light,
-    Rubik_400Regular,
-    Rubik_700Bold,
-  });
+    Roboto_300Light,
+    Roboto_400Regular,
+    Roboto_700Bold,
+  })
 
   return (
     <GluestackUIProvider config={config.theme}>
@@ -27,7 +27,7 @@ export default function App() {
       />
       <AuthProvider>{fontLoaded ? <Routes /> : <Loading />}</AuthProvider>
     </GluestackUIProvider>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
   },
-});
+})

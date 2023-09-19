@@ -28,9 +28,9 @@ export function Paragraph({
   children,
 }: ParagraphProps) {
   const fonts = {
-    300: "Rubik_300Light",
-    400: "Rubik_400Regular",
-    700: "Rubik_700Bold",
+    300: "Roboto_300Light",
+    400: "Roboto_400Regular",
+    700: "Roboto_700Bold",
   };
 
   return (
