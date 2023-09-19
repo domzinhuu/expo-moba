@@ -50,7 +50,7 @@ function CreateUser() {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: theme.colors.primary[700] }}>
+    <View style={{ flex: 1, backgroundColor: theme.colors.primary[500] }}>
       <View style={styles.container}>
         <Stepper.Title>{step.title}</Stepper.Title>
         <Stepper.Content>{step.component}</Stepper.Content>

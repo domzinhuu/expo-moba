@@ -1,29 +1,31 @@
-import { View } from "react-native";
-import Card from "../../shared/Card";
-import { CustomInput } from "../CustomInput";
-import { Picker } from "@react-native-picker/picker";
-import { useContext, useState } from "react";
-import { createUserContext } from "../../contexts/CreateUserContext";
-import { CreateUserCompanyData } from "../../models/user";
-import { theme }  from "@theme/base"
+import { View } from "react-native"
+import Card from "../../shared/Card"
+import { CustomInput, Input } from "../CustomInput"
+import { Picker } from "@react-native-picker/picker"
+import { useContext, useState } from "react"
+import { createUserContext } from "../../contexts/CreateUserContext"
+import { CreateUserCompanyData } from "../../models/user"
+import { theme } from "@theme/base"
+import { Controller, useForm } from "react-hook-form"
 
 export function ComerceForm() {
-  const { companyData, onSetCompanyData } = useContext(createUserContext);
+  const { companyData, onSetCompanyData } = useContext(createUserContext)
+  const { control } = useForm()
 
   function handleChangeDoc(value: any) {
     const data: CreateUserCompanyData = {
       ...companyData,
       doc: value,
-    };
-    onSetCompanyData(data);
+    }
+    onSetCompanyData(data)
   }
 
   function handleChangeCompanyName(value: any) {
     const data: CreateUserCompanyData = {
       ...companyData,
       companyName: value,
-    };
-    onSetCompanyData(data);
+    }
+    onSetCompanyData(data)
   }
 
   function handleChangeCep(value: any) {
@@ -33,8 +35,8 @@ export function ComerceForm() {
         ...companyData.ecAddress,
         zipcode: value,
       },
-    };
-    onSetCompanyData(data);
+    }
+    onSetCompanyData(data)
   }
 
   function handleChangeInfo(value: any) {
@@ -44,8 +46,8 @@ export function ComerceForm() {
         ...companyData.ecAddress,
         info: value,
       },
-    };
-    onSetCompanyData(data);
+    }
+    onSetCompanyData(data)
   }
 
   function handleChangeNumber(value: any) {
@@ -55,8 +57,8 @@ export function ComerceForm() {
         ...companyData.ecAddress,
         number: value,
       },
-    };
-    onSetCompanyData(data);
+    }
+    onSetCompanyData(data)
   }
 
   function handleChangeDistric(value: any) {
@@ -66,8 +68,8 @@ export function ComerceForm() {
         ...companyData.ecAddress,
         district: value,
       },
-    };
-    onSetCompanyData(data);
+    }
+    onSetCompanyData(data)
   }
 
   function handleChangeState(value: any) {
@@ -77,9 +79,9 @@ export function ComerceForm() {
         ...companyData.ecAddress,
         state: value,
       },
-    };
+    }
 
-    onSetCompanyData(data);
+    onSetCompanyData(data)
   }
 
   function handleChangeCity(value: any) {
@@ -89,9 +91,9 @@ export function ComerceForm() {
         ...companyData.ecAddress,
         city: value,
       },
-    };
+    }
 
-    onSetCompanyData(data);
+    onSetCompanyData(data)
   }
 
   function handleChangeStreet(value: any) {
@@ -101,35 +103,40 @@ export function ComerceForm() {
         ...companyData.ecAddress,
         street: value,
       },
-    };
+    }
 
-    onSetCompanyData(data);
+    onSetCompanyData(data)
   }
 
   function handleChangePhone(value: any) {
     const data: CreateUserCompanyData = {
       ...companyData,
       phone: value,
-    };
+    }
 
-    onSetCompanyData(data);
+    onSetCompanyData(data)
   }
 
   function handleChangeRevenue(value: any) {
     const data: CreateUserCompanyData = {
       ...companyData,
       revenue: value,
-    };
-    onSetCompanyData(data);
+    }
+    onSetCompanyData(data)
   }
 
   return (
     <View>
-      <CustomInput
-        placeholder="Documento"
-        onUpdate={handleChangeDoc}
-        value={companyData.doc}
-        keyBoardType="numeric"
+      <Controller
+        control={control}
+        name="doc"
+        render={({ field: { onChange } }) => (
+          <Input
+            placeholder="Documento"
+            onChangeText={onChange}
+            keyBoardType="numeric"
+          />
+        )}
       />
 
       <CustomInput
@@ -218,5 +225,5 @@ export function ComerceForm() {
         </Picker>
       </View>
     </View>
-  );
+  )
 }

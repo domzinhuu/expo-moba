@@ -1,15 +1,15 @@
-import { KeyboardTypeOptions, TextInput } from "react-native";
-import { styles } from "./styles";
-import { Paragraph } from "../Paragraph";
-import { theme }  from "@theme/base"
+import { KeyboardTypeOptions, TextInput } from "react-native"
+import { styles } from "./styles"
+import { Paragraph } from "../Paragraph"
+import { theme } from "@theme/base"
 
 interface CustomInputProps {
-  placeholder: string;
-  keyBoardType?: KeyboardTypeOptions;
-  value?: any;
-  error?: string;
-  isPassword?: boolean;
-  onUpdate?: (value: any) => void;
+  placeholder: string
+  keyBoardType?: KeyboardTypeOptions
+  value?: any
+  error?: string
+  isPassword?: boolean
+  onUpdate?: (value?: any) => void
 }
 
 export function CustomInput({
@@ -31,5 +31,9 @@ export function CustomInput({
       onChangeText={onUpdate}
       style={styles.input}
     />
-  );
+  )
+}
+
+export function Input(props: any) {
+  return <TextInput {...props} style={styles.input} />
 }

@@ -14,7 +14,7 @@ interface StepperActionProps {
 export const Stepper = {
   Title: ({ children }: PropsWithChildren) => (
     <View style={styles.stepTitle}>
-      <Title variant="white">{children}</Title>
+      <Title size="md" variant="white">{children}</Title>
     </View>
   ),
   Content: ({ children }: PropsWithChildren) => (
@@ -48,8 +48,8 @@ export const Stepper = {
 
 const styles = StyleSheet.create({
   stepTitle: {
-    padding: 24,
-    marginTop: theme.space[32],
+    paddingHorizontal: 24,
+    paddingTop:56,
     width: "100%",
     height: 100,
   },
@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
     gap: 4,
     padding: 8,
     paddingVertical: 16,
-    height: 100,
+    height: 80,
+    backgroundColor:theme.colors.white[500]
   },
   stepContent: {
     padding: 16,
