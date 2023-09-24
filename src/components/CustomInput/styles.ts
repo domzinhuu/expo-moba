@@ -15,4 +15,16 @@ export const styles = StyleSheet.create({
     marginBottom:16,
     borderRadius:6
   },
+  newInput: {
+    flexShrink: 1,
+    flexDirection: "row",
+    paddingHorizontal: 8,
+    paddingTop: 12,
+    paddingBottom:12,
+    fontSize: 16,
+    borderBottomColor: theme.colors.gray[500],
+    borderBottomWidth: 1,
+    marginBottom:16,
+    borderRadius:6
+  },
 });

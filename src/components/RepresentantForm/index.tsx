@@ -1,74 +1,84 @@
-import { View } from "react-native";
-import { CustomInput } from "../CustomInput";
-import { useContext } from "react";
-import { createUserContext } from "../../contexts/CreateUserContext";
-import { CreateUserRepresentativeData } from "../../models/user";
+import { View } from "react-native"
+import { useContext } from "react"
+import { CreateUserContext } from "../../contexts/CreateUserContext"
+import { Controller } from "react-hook-form"
+import { ValidationInput } from "@shared/ValidationInput"
+import { formatDocument, maskToPhone } from "@utils/formatters"
+import { ScrollView } from "@gluestack-ui/themed"
 
 export function RepresentantForm() {
-  const { representativeData, onSetRepresentativeData } =
-    useContext(createUserContext);
-
-  function handleEmailChange(value: any) {
-    const data: CreateUserRepresentativeData = {
-      ...representativeData,
-      email: value,
-    };
-
-    onSetRepresentativeData(data);
-  }
-
-  function handleNameChange(value: any) {
-    const data: CreateUserRepresentativeData = {
-      ...representativeData,
-      name: value,
-    };
-
-    onSetRepresentativeData(data);
-  }
-
-  function handlePhoneChange(value: any) {
-    const data: CreateUserRepresentativeData = {
-      ...representativeData,
-      phone: value,
-    };
-
-    onSetRepresentativeData(data);
-  }
-
-  function handleDocChange(value: any) {
-    const data: CreateUserRepresentativeData = {
-      ...representativeData,
-      doc: value,
-    };
-
-    onSetRepresentativeData(data);
-  }
+  const { control } = useContext(CreateUserContext)
 
   return (
-    <View>
-      <CustomInput
-        onUpdate={handleEmailChange}
-        keyBoardType="email-address"
-        value={representativeData.email}
-        placeholder="E-mail do representante"
-      />
-      <CustomInput
-        onUpdate={handleNameChange}
-        value={representativeData.name}
-        placeholder="Nome do representante"
-      />
-      <CustomInput
-        onUpdate={handlePhoneChange}
-        keyBoardType="phone-pad"
-        value={representativeData.phone}
-        placeholder="Telefone do representante"
-      />
-      <CustomInput
-        onUpdate={handleDocChange}
-        keyBoardType="number-pad"
-        value={representativeData.doc}
-        placeholder="Documento do representante"
-      />
-    </View>
-  );
+    <ScrollView>
+      <View>
+        <Controller
+          control={control}
+          rules={{
+            required: "Campo obrigatório",
+          }}
+          name="email"
+          render={({ field: { value, onChange }, formState: { errors } }) => (
+            <ValidationInput
+              onChange={onChange}
+              placeholder="E-mail do representante"
+              keyBoardType="email-address"
+              value={value}
+              error={errors.email}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          rules={{
+            required: "Campo obrigatório",
+          }}
+          name="name"
+          render={({ field: { value, onChange }, formState: { errors } }) => (
+            <ValidationInput
+              onChange={onChange}
+              placeholder="Nome do representante"
+              value={value}
+              error={errors.name}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          rules={{
+            required: "Campo obrigatório",
+          }}
+          name="representativePhone"
+          render={({ field: { value, onChange }, formState: { errors } }) => (
+            <ValidationInput
+              onChange={(val) => onChange(maskToPhone(val))}
+              placeholder="Telefone do representante"
+              keyBoardType="phone-pad"
+              value={value}
+              error={errors.representativePhone}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          rules={{
+            required: "Campo obrigatório",
+          }}
+          name="representativeDoc"
+          render={({ field: { value, onChange }, formState: { errors } }) => (
+            <ValidationInput
+              onChange={(val) => onChange(formatDocument(val))}
+              keyBoardType="number-pad"
+              placeholder="Documento do representante"
+              value={value}
+              error={errors.representativeDoc}
+            />
+          )}
+        />
+      </View>
+    </ScrollView>
+  )
 }

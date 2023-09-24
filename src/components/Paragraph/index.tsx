@@ -1,7 +1,7 @@
 import { Text } from "react-native";
 import { theme } from "@theme/base";
 
-type Size = "sm" | "md";
+type Size = "xs" | "sm" | "md";
 type Weight = 700 | 400 | 300;
 export type TextVariant =
   | "primary"

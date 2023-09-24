@@ -38,6 +38,7 @@ export const theme = {
     lg: 20,
     md: 16,
     sm: 14,
+    xs: 12,
   },
   space: {
     4: 4,
@@ -48,4 +49,4 @@ export const theme = {
     32: 32,
     48: 48,
   },
-};
+}

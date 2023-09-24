@@ -1,49 +1,57 @@
-import { Text, TouchableOpacity, View } from "react-native";
-import { CustomInput } from "../CustomInput";
-import { Paragraph } from "../Paragraph";
-import { theme }  from "@theme/base"
-import { Ionicons } from "@expo/vector-icons";
-import { styles } from "./styles";
-import { useCallback, useContext, useState } from "react";
-import { Title } from "../Title";
-import { createUserContext } from "../../contexts/CreateUserContext";
-import { MachineData } from "../../models/user";
+import { TouchableOpacity, View, ScrollView } from "react-native"
+import { Paragraph } from "../Paragraph"
+import { theme } from "@theme/base"
+import { Ionicons } from "@expo/vector-icons"
+import { styles } from "./styles"
+import { useCallback, useContext, useState } from "react"
+import { CreateUserContext } from "../../contexts/CreateUserContext"
+import { MachineData } from "../../models/user"
+import { AcquirerModal } from "./components/AcquirerModal"
 
 export function AcquirerForm() {
-  const [showForm, setShowForm] = useState(false);
-  const [ecName, setEcName] = useState("");
-  const [ecDoc, setEcDoc] = useState("");
-  const [acqName, setAcqName] = useState("");
-  const [acqDoc, setAcqDoc] = useState("");
-  const { combo, onSetComboData } = useContext(createUserContext);
+  const [showForm, setShowForm] = useState(false)
+  const { combo } = useContext(CreateUserContext)
 
   const acquirerList = useCallback(() => {
     return Object.keys(combo.added).map((key) => (
       <AcquirerItem key={key} ecList={combo.added[key]} />
-    ));
-  }, [combo]);
-
-  function handleAddAcquirer() {
-    const acquirer: MachineData = {
-      acqDoc,
-      acqName,
-      ecDoc,
-      ecName,
-    };
-
-    onSetComboData(acquirer);
-    setEcDoc("");
-    setAcqName("");
-    setAcqDoc("");
-    setEcName("");
-    setShowForm(false);
-  }
+    ))
+  }, [combo])
 
   return (
-    <View style={styles.container}>
-      <View style={styles.acquirerContent}>
-        {!showForm && (
-          <View style={{ alignItems: "center" }}>
+    <ScrollView>
+      <View style={styles.container}>
+        {(Object.keys(combo.added).length && (
+          <View>
+            <TouchableOpacity
+              style={{
+                width: 120,
+                flexDirection: "row",
+                alignItems: "center",
+                alignSelf: "flex-end",
+                borderRadius: 6,
+                justifyContent: "center",
+                backgroundColor: theme.colors.primary[500],
+                paddingVertical: 8,
+                paddingHorizontal: 4,
+                marginVertical: 16,
+              }}
+              onPress={() => setShowForm(true)}
+            >
+              <Ionicons
+                color={theme.colors.white[500]}
+                name="add-circle-outline"
+                size={20}
+              />
+              <Paragraph variant="white">Maquininha</Paragraph>
+            </TouchableOpacity>
+
+            {acquirerList()}
+          </View>
+        )) || (
+          <View
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+          >
             <TouchableOpacity
               onPress={() => setShowForm(true)}
               style={styles.newAcquirer}
@@ -55,88 +63,26 @@ export function AcquirerForm() {
               />
               <Paragraph variant="white">Adicionar Maquininha</Paragraph>
             </TouchableOpacity>
+            <EmptyList />
           </View>
         )}
 
-        {showForm && (
-          <View>
-            <CustomInput
-              value={ecDoc}
-              onUpdate={setEcDoc}
-              keyBoardType="numeric"
-              placeholder="Documento do EC"
-            />
-            <CustomInput
-              value={ecName}
-              onUpdate={setEcName}
-              placeholder="Nome do EC"
-            />
-            <CustomInput
-              value={acqDoc}
-              onUpdate={setAcqDoc}
-              keyBoardType="numeric"
-              placeholder="CNPJ da Maquinnha"
-            />
-            <CustomInput
-              value={acqName}
-              onUpdate={setAcqName}
-              placeholder="Nome da Maquininha"
-            />
-          </View>
-        )}
-
-        {!showForm && !Object.keys(combo.added).length && <EmptyList />}
-        {!showForm && acquirerList()}
-
-        {showForm && (
-          <View style={styles.formAction}>
-            <TouchableOpacity
-              onPress={() => setShowForm(false)}
-              style={[
-                styles.formButton,
-                { backgroundColor: theme.colors.danger[500] },
-              ]}
-            >
-              <Paragraph variant="white">Fechar</Paragraph>
-              <Ionicons
-                color={theme.colors.white[500]}
-                size={20}
-                name="close-outline"
-              />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={handleAddAcquirer}
-              style={[
-                styles.formButton,
-                { backgroundColor: theme.colors.secondary[500] },
-              ]}
-            >
-              <Paragraph variant="white">Salvar</Paragraph>
-              <Ionicons
-                color={theme.colors.white[500]}
-                size={20}
-                name="save-outline"
-              />
-            </TouchableOpacity>
-          </View>
-        )}
+        <AcquirerModal isOpen={showForm} onClose={() => setShowForm(false)} />
       </View>
-    </View>
-  );
+    </ScrollView>
+  )
 }
-
 interface AcquirerItemProps {
-  ecList: MachineData[];
+  ecList: MachineData[]
 }
 
 function AcquirerItem({ ecList }: AcquirerItemProps) {
-  const ecName = ecList[0].ecName;
-  const ecDoc = ecList[0].ecDoc;
-  const { onDeleteAcquirer } = useContext(createUserContext);
+  const ecName = ecList[0].ecName
+  const ecDoc = ecList[0].ecDoc
+  const { onDeleteAcquirer } = useContext(CreateUserContext)
 
   function handleDeleteAcquirer(acqDoc: string) {
-    onDeleteAcquirer(ecDoc, acqDoc);
+    onDeleteAcquirer(ecDoc, acqDoc)
   }
 
   return (
@@ -148,8 +94,15 @@ function AcquirerItem({ ecList }: AcquirerItemProps) {
         <Paragraph variant="white">{ecDoc}</Paragraph>
       </View>
 
-      {ecList.map((acquirer: MachineData) => (
-        <View key={acquirer.acqDoc} style={styles.bodyContainer}>
+      {ecList.map((acquirer: MachineData, index: number) => (
+        <View
+          key={acquirer.acqDoc}
+          style={
+            index === ecList.length - 1
+              ? [styles.bodyContainer, styles.endBorderRadius]
+              : [styles.bodyContainer]
+          }
+        >
           <View style={styles.itemBody}>
             <Paragraph size="md">{acquirer.acqName}</Paragraph>
             <Paragraph>{acquirer.acqDoc}</Paragraph>
@@ -173,7 +126,7 @@ function AcquirerItem({ ecList }: AcquirerItemProps) {
         </View>
       ))}
     </View>
-  );
+  )
 }
 
 function EmptyList() {
@@ -181,9 +134,7 @@ function EmptyList() {
     <View
       style={{ paddingTop: 48, justifyContent: "center", alignItems: "center" }}
     >
-      <Paragraph size="md">
-        Nenhuma maquininha cadastrada.
-      </Paragraph>
+      <Paragraph size="md">Nenhuma maquininha cadastrada.</Paragraph>
     </View>
-  );
+  )
 }

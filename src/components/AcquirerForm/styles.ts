@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { theme }  from "@theme/base"
+import { StyleSheet } from "react-native"
+import { theme } from "@theme/base"
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   acquirerContent: {
     flex: 1,
-    justifyContent:"center",
+    justifyContent: "center",
   },
   newAcquirer: {
     backgroundColor: theme.colors.primary[500],
@@ -17,11 +17,11 @@ export const styles = StyleSheet.create({
     gap: 8,
     justifyContent: "center",
     alignItems: "center",
-    padding: 12,
+    padding: 10,
     borderRadius: 6,
   },
   item: {
-    backgroundColor: theme.colors.white[500],
+    backgroundColor: theme.colors.gray[300],
     borderRadius: 6,
     marginTop: 16,
   },
@@ -31,9 +31,9 @@ export const styles = StyleSheet.create({
     gap: 4,
     padding: 16,
     justifyContent: "space-between",
+    backgroundColor: theme.colors.primary[500],
     borderTopEndRadius: 6,
     borderTopStartRadius: 6,
-    backgroundColor: theme.colors.primary[500],
   },
 
   bodyContainer: {
@@ -41,6 +41,13 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     padding: 16,
+    borderWidth: 1,
+    borderTopWidth: 0,
+    borderColor: theme.colors.primary[300],
+  },
+  endBorderRadius: {
+    borderBottomEndRadius: 6,
+    borderBottomStartRadius: 6,
   },
   itemBody: {
     gap: 4,
@@ -75,4 +82,4 @@ export const styles = StyleSheet.create({
     gap: 16,
     borderRadius: 6,
   },
-});
+})

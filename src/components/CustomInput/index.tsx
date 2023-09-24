@@ -1,6 +1,5 @@
-import { KeyboardTypeOptions, TextInput } from "react-native"
+import { KeyboardTypeOptions, TextInput, TextInputProps } from "react-native"
 import { styles } from "./styles"
-import { Paragraph } from "../Paragraph"
 import { theme } from "@theme/base"
 
 interface CustomInputProps {
@@ -34,6 +33,12 @@ export function CustomInput({
   )
 }
 
-export function Input(props: any) {
-  return <TextInput {...props} style={styles.input} />
+export function Input(props: TextInputProps) {
+  return (
+    <TextInput
+      {...props}
+      style={[styles.newInput, props.style]}
+      autoCapitalize="none"
+    />
+  )
 }

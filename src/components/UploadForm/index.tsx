@@ -1,20 +1,72 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react"
 import {
   View,
-  Button,
   Image,
   StyleSheet,
-  Platform,
   TouchableOpacity,
-} from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import { Paragraph } from "../Paragraph";
-import { theme }  from "@theme/base"
-import { Ionicons } from "@expo/vector-icons";
+  ScrollView,
+  Alert,
+  Platform,
+} from "react-native"
+import * as ImagePicker from "expo-image-picker"
+import { Paragraph } from "../Paragraph"
+import { theme } from "@theme/base"
+import { Ionicons } from "@expo/vector-icons"
+import { Loading } from "@components/Loading"
+import * as FileSystem from "expo-file-system"
+import { CreateUserContext } from "@contexts/CreateUserContext"
 
 function UploadForm() {
-  const [imagemFrente, setImagemFrente] = useState<string | null>(null);
-  const [imagemVerso, setImagemVerso] = useState<string | null>(null);
+  const [photoIsLoading, setPhotoIsLoading] = useState(false)
+  const [imagemFrente, setImagemFrente] = useState<string | null>(null)
+  const [imagemVerso, setImagemVerso] = useState<string | null>(null)
+  const { companyData, onSetImageUpload } = useContext(CreateUserContext)
+
+  const selecionarImagem = async (
+    position: "front" | "back",
+    setImagem: React.Dispatch<React.SetStateAction<string | null>>
+  ) => {
+    setPhotoIsLoading(true)
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+        allowsEditing: true,
+      })
+
+      if (result.canceled) {
+        return
+      }
+
+      const photoSelected = result.assets[0]
+
+      if (photoSelected.uri) {
+        const photoInfo = await FileSystem.getInfoAsync(photoSelected.uri)
+
+        if (photoInfo.exists && photoInfo.size / 1024 / 1024 > 5) {
+          return Alert.alert(
+            "Essa imagem é muito grande. Escolha uma imagem até 5mb"
+          )
+        }
+      }
+
+      const fileExtension = photoSelected.uri.split(".").pop()
+      const companyName = companyData.companyName.replaceAll(" ", "")
+
+      const photoFile = {
+        name: `${companyName}-${position}-${Date.now()}.${fileExtension}`.toLowerCase(),
+        uri: photoSelected.uri,
+        type: `${photoSelected.type}/${fileExtension}`,
+      } as any
+
+      onSetImageUpload(photoFile, position)
+      setImagem(photoSelected.uri)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setPhotoIsLoading(false)
+    }
+  }
 
   useEffect(() => {
     (async () => {
@@ -30,61 +82,57 @@ function UploadForm() {
     })();
   }, []);
 
-  const selecionarImagem = async (
-    setImagem: React.Dispatch<React.SetStateAction<string | null>>
-  ) => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.canceled) {
-      setImagem(result.assets[0].uri);
-    }
-  };
-
   return (
-    <View style={styles.container}>
-      <View style={styles.uploadSection}>
-        <TouchableOpacity
-          style={styles.uploadButton}
-          onPress={() => selecionarImagem(setImagemFrente)}
-        >
-          <Ionicons
-            size={32}
-            name="camera-outline"
-            color={theme.colors.white[500]}
-          />
-          <Paragraph variant="white" size="md">
-            Frente do Documento
-          </Paragraph>
-        </TouchableOpacity>
-        {imagemFrente && (
-          <Image source={{ uri: imagemFrente }} style={styles.imagePreview} />
-        )}
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.uploadSection}>
+          <TouchableOpacity
+            style={styles.uploadButton}
+            onPress={() => selecionarImagem("front", setImagemFrente)}
+          >
+            <Ionicons
+              size={32}
+              name="camera-outline"
+              color={theme.colors.white[500]}
+            />
+            <Paragraph variant="white" size="md">
+              Frente do Documento
+            </Paragraph>
+          </TouchableOpacity>
+          {photoIsLoading && <Loading />}
+          {imagemFrente && (
+            <Image
+              source={{ uri: imagemFrente }}
+              style={styles.imagePreview}
+              resizeMode="contain"
+            />
+          )}
+        </View>
+        <View style={styles.uploadSection}>
+          <TouchableOpacity
+            style={styles.uploadButton}
+            onPress={() => selecionarImagem("back", setImagemVerso)}
+          >
+            <Ionicons
+              size={32}
+              name="camera-reverse"
+              color={theme.colors.white[500]}
+            />
+            <Paragraph variant="white" size="md">
+              Verso do Documento
+            </Paragraph>
+          </TouchableOpacity>
+          {imagemVerso && (
+            <Image
+              source={{ uri: imagemVerso }}
+              style={styles.imagePreview}
+              resizeMode="contain"
+            />
+          )}
+        </View>
       </View>
-      <View style={styles.uploadSection}>
-        <TouchableOpacity
-          style={styles.uploadButton}
-          onPress={() => selecionarImagem(setImagemVerso)}
-        >
-          <Ionicons
-            size={32}
-            name="camera-reverse"
-            color={theme.colors.white[500]}
-          />
-          <Paragraph variant="white" size="md">
-            Upload Verso do Documento
-          </Paragraph>
-        </TouchableOpacity>
-        {imagemVerso && (
-          <Image source={{ uri: imagemVerso }} style={styles.imagePreview} />
-        )}
-      </View>
-    </View>
-  );
+    </ScrollView>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -101,7 +149,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap:16
+    gap: 16,
   },
   imagePreview: {
     marginTop: 10,
@@ -109,5 +157,5 @@ const styles = StyleSheet.create({
     height: 200,
     alignSelf: "center",
   },
-});
-export default UploadForm;
+})
+export default UploadForm

@@ -1,30 +1,32 @@
-import { useNavigation } from "@react-navigation/native";
-import { PropsWithChildren, useContext } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
-import { Title } from "../components/Title";
-import { ActionButton } from "../screens/CreateUser/components/ActionButton";
-import { theme }  from "@theme/base"
-import { stepperContext } from "../contexts/StepperContext";
+import { useNavigation } from "@react-navigation/native"
+import { PropsWithChildren, useContext } from "react"
+import { StyleSheet, View } from "react-native"
+import { Title } from "../components/Title"
+import { ActionButton } from "../screens/CreateUser/components/ActionButton"
+import { theme } from "@theme/base"
+import { stepperContext } from "../contexts/StepperContext"
+import { CreateUserContext } from "@contexts/CreateUserContext"
 
 interface StepperActionProps {
-  totalStep: number;
-  onFinish: (data?: any) => void;
+  totalStep: number
+  onFinish: (data?: any) => void
 }
 
 export const Stepper = {
   Title: ({ children }: PropsWithChildren) => (
     <View style={styles.stepTitle}>
-      <Title size="md" variant="white">{children}</Title>
+      <Title size="md" variant="white">
+        {children}
+      </Title>
     </View>
   ),
   Content: ({ children }: PropsWithChildren) => (
-    <View style={styles.stepContent}>
-      <ScrollView>{children}</ScrollView>
-    </View>
+    <View style={styles.stepContent}>{children}</View>
   ),
   Actions: ({ totalStep = 1, onFinish }: StepperActionProps) => {
-    const { goBack } = useNavigation();
-    const { currentStep, nextStep, prevStep } = useContext(stepperContext);
+    const { goBack } = useNavigation()
+    const { currentStep, nextStep, prevStep } = useContext(stepperContext)
+    const { handleSubmit } = useContext(CreateUserContext)
     return (
       <View style={styles.actionBottom}>
         <ActionButton
@@ -39,17 +41,21 @@ export const Stepper = {
           isLast={currentStep === totalStep}
           label={currentStep === totalStep ? "Confirmar" : "Proximo"}
           hasNext
-          onPress={currentStep === totalStep ? onFinish : nextStep}
+          onPress={
+            currentStep === totalStep
+              ? handleSubmit(onFinish)
+              : handleSubmit(nextStep)
+          }
         />
       </View>
-    );
+    )
   },
-};
+}
 
 const styles = StyleSheet.create({
   stepTitle: {
     paddingHorizontal: 24,
-    paddingTop:56,
+    paddingTop: 56,
     width: "100%",
     height: 100,
   },
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
     padding: 8,
     paddingVertical: 16,
     height: 80,
-    backgroundColor:theme.colors.white[500]
+    backgroundColor: theme.colors.white[500],
   },
   stepContent: {
     padding: 16,
@@ -67,4 +73,4 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.white[500],
   },
-});
+})
