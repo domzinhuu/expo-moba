@@ -20,7 +20,8 @@ function UploadForm() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false)
   const [imagemFrente, setImagemFrente] = useState<string | null>(null)
   const [imagemVerso, setImagemVerso] = useState<string | null>(null)
-  const { companyData, onSetImageUpload } = useContext(CreateUserContext)
+  const { companyData, onSetImageUpload, imageForValidation } =
+    useContext(CreateUserContext)
 
   const selecionarImagem = async (
     position: "front" | "back",
@@ -69,18 +70,23 @@ function UploadForm() {
   }
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       if (Platform.OS !== "web") {
         const { status } =
-          await ImagePicker.requestMediaLibraryPermissionsAsync();
+          await ImagePicker.requestMediaLibraryPermissionsAsync()
         if (status !== "granted") {
           alert(
             "Desculpe, nós precisamos de permissões da biblioteca de mídia para fazer isso funcionar!"
-          );
+          )
         }
       }
-    })();
-  }, []);
+    })()
+
+    if (imageForValidation.front || imageForValidation.back) {
+      setImagemFrente(imageForValidation.front?.uri)
+      setImagemVerso(imageForValidation.back?.uri)
+    }
+  }, [])
 
   return (
     <ScrollView>

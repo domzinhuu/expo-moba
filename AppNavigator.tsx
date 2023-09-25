@@ -1,17 +1,13 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { DashboardScreen } from "./src/screens/Dashboard";
-import { ProfileScreen } from "./src/screens/Profile";
-import { Ionicons } from "@expo/vector-icons";
-import { TouchableHighlight, View } from "react-native";
-import { theme } from "@theme/base";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { DashboardScreen } from "./src/screens/Dashboard"
+import { ProfileScreen } from "./src/screens/Profile"
+import { Ionicons } from "@expo/vector-icons"
+import { TouchableHighlight } from "react-native"
+import { theme } from "@theme/base"
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 const AppNavigator = () => {
-  const handleLogoutPress = () => {
-    console.log("Sair pressionado");
-  };
-
   return (
     <>
       <Tab.Navigator
@@ -26,10 +22,7 @@ const AppNavigator = () => {
             backgroundColor: theme.colors.primary[500],
           },
           headerRight: () => (
-            <TouchableHighlight
-              onPress={handleLogoutPress}
-              style={{ paddingHorizontal: 16 }}
-            >
+            <TouchableHighlight style={{ paddingHorizontal: 16 }}>
               <Ionicons
                 name="log-out-outline"
                 size={24}
@@ -59,7 +52,7 @@ const AppNavigator = () => {
         />
       </Tab.Navigator>
     </>
-  );
-};
+  )
+}
 
-export default AppNavigator;
+export default AppNavigator

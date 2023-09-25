@@ -92,10 +92,6 @@ function CreateUser() {
       documents.append("documents", imageForValidation.front)
       documents.append("documents", imageForValidation.back)
 
-      console.log(
-        createUserData.ec.doc,
-        JSON.stringify(createUserData.ec.combo)
-      )
       await api.postForm("/upload", documents)
       await api.post("/register", createUserData)
 

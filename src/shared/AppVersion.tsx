@@ -1,5 +1,5 @@
-import { Text } from "react-native";
-
+import { Text } from "react-native"
+import { version } from "../../package.json"
 export function AppVersion() {
-  return <Text style={{ fontSize: 10 }}>0.1.28</Text>;
+  return <Text style={{ fontSize: 10 }}>v{version}</Text>
 }

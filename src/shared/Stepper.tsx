@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native"
-import { PropsWithChildren, useContext } from "react"
+import { PropsWithChildren, useContext, useEffect } from "react"
 import { StyleSheet, View } from "react-native"
 import { Title } from "../components/Title"
 import { ActionButton } from "../screens/CreateUser/components/ActionButton"
@@ -27,6 +27,7 @@ export const Stepper = {
     const { goBack } = useNavigation()
     const { currentStep, nextStep, prevStep } = useContext(stepperContext)
     const { handleSubmit } = useContext(CreateUserContext)
+
     return (
       <View style={styles.actionBottom}>
         <ActionButton

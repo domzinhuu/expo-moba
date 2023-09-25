@@ -15,6 +15,7 @@ interface CreateUserContextProps {
   combo: CreateUserAcquirerData
   imageForValidation: any
   control: Control<FormDataProps>
+  formIsValid: boolean
   handleSubmit: any
   getValues: UseFormGetValues<FormDataProps>
   onSetCompanyData: (data: CreateUserCompanyData) => void
@@ -30,8 +31,15 @@ interface CreateUserContextProps {
 export const CreateUserContext = createContext({} as CreateUserContextProps)
 
 export function CreateUserProvider({ children }: PropsWithChildren) {
-  const { control, setValue, getValues, handleSubmit, reset, clearErrors } =
-    useForm<FormDataProps>()
+  const {
+    control,
+    setValue,
+    getValues,
+    handleSubmit,
+    reset,
+    clearErrors,
+    formState: { isValid },
+  } = useForm<FormDataProps>()
 
   const [companyData, setCompanyData] = useState<CreateUserCompanyData>({
     ecAddress: {},
@@ -128,6 +136,7 @@ export function CreateUserProvider({ children }: PropsWithChildren) {
         imageForValidation,
         combo,
         control,
+        formIsValid: isValid,
         execMockStep1: mockFirstStep,
         getValues,
         handleSubmit,
@@ -164,4 +173,5 @@ type FormDataProps = {
   email_login: string
   password: string
   passwordConfirm: string
+  terms: boolean
 }
