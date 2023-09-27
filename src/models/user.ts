@@ -36,5 +36,7 @@ export type MachineData = {
 };
 
 export type CreateUserAcquirerData = {
-  added: Record<string, MachineData[]>;
+  added?: Record<string, MachineData[]>;
+  active?: Record<string, MachineData[]>;
+  removed?: Record<string, MachineData[]>;
 };

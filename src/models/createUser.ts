@@ -14,7 +14,7 @@ export type CreateUserEntity = {
     representative: CreateUserRepresentativeData
     revenue: string
   }
-  user: {
+  user?: {
     email_login: string
     password: string
   }

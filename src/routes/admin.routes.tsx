@@ -1,30 +1,36 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { theme } from "@theme/base";
-import { TouchableHighlight } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { ProfileScreen } from "../screens/Profile";
-import { useAuth } from "@hooks/useAuth";
-import { StatusBar } from "expo-status-bar";
-import { DashboardScreen } from "@screens/Dashboard";
-import { LogoutButton } from "@shared/Logout";
-import { ChartScreen } from "@screens/Charts";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { theme } from "@theme/base"
+import { Ionicons } from "@expo/vector-icons"
+import { useAuth } from "@hooks/useAuth"
+import { StatusBar } from "expo-status-bar"
+import { DashboardScreen } from "@screens/Dashboard"
+import { LogoutButton } from "@shared/Logout"
+import { ChartScreen } from "@screens/Charts"
+import { AcquirerScreen } from "@screens/Acquirer"
+import { ProfileScreen } from "@screens/Profile"
+import { useContext } from "react"
+import { ProfileContext } from "@contexts/ProfileContext"
 
-const { Navigator, Screen } = createBottomTabNavigator();
+const { Navigator, Screen } = createBottomTabNavigator()
 const screenOptions = {
   headerTintColor: theme.colors.white[500],
   tabBarInactiveTintColor: theme.colors.white[500],
   tabBarActiveTintColor: theme.colors.secondary[500],
   tabBarStyle: {
     backgroundColor: theme.colors.primary[500],
-    height:64
+    height: 64,
+  },
+  tabBarItemStyle: {
+    paddingVertical: 8,
   },
   headerStyle: {
     backgroundColor: theme.colors.primary[500],
   },
-};
+}
 
 export function AdminRoutes() {
-  const { signOut } = useAuth();
+  const { signOut } = useAuth()
+  const { onToggleEdit, isEditing, handleSubmit } = useContext(ProfileContext)
 
   return (
     <>
@@ -33,7 +39,6 @@ export function AdminRoutes() {
       <Navigator
         screenOptions={{
           ...screenOptions,
-          
         }}
       >
         <Screen
@@ -46,6 +51,17 @@ export function AdminRoutes() {
             ),
           }}
         />
+
+        <Screen
+          component={AcquirerScreen}
+          name="Maquininhas"
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="calculator-outline" size={24} color={color} />
+            ),
+          }}
+        />
+
         <Screen
           component={ChartScreen}
           name="Gráficos"
@@ -62,16 +78,25 @@ export function AdminRoutes() {
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="people-circle-outline" size={24} color={color} />
             ),
+            headerRight: () => (
+              <Ionicons
+                name={isEditing ? "save-outline" : "create-outline"}
+                size={20}
+                style={{ marginRight: 16 }}
+                color={theme.colors.white[500]}
+                onPress={handleSubmit(onToggleEdit)}
+              />
+            ),
           }}
         />
 
-        <Screen
+        {/*   <Screen
           name="Sair"
           component={LogoutButton}
           listeners={{
             tabPress: (e) => {
-              e.preventDefault();
-              signOut();
+              e.preventDefault()
+              signOut()
             },
           }}
           options={{
@@ -79,8 +104,8 @@ export function AdminRoutes() {
               <Ionicons name="log-out-outline" size={24} color={color} />
             ),
           }}
-        />
+        /> */}
       </Navigator>
     </>
-  );
+  )
 }

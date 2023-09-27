@@ -18,6 +18,8 @@ interface ParagraphProps {
   weight?: Weight;
   size?: Size;
   disabled?: boolean;
+  x?: number;
+  y?: number;
 }
 
 export function Paragraph({
@@ -25,6 +27,8 @@ export function Paragraph({
   variant = "black",
   weight = 400,
   disabled = false,
+  x = 0,
+  y = 0,
   children,
 }: ParagraphProps) {
   const fonts = {
@@ -39,6 +43,8 @@ export function Paragraph({
         fontFamily: fonts[weight],
         color: disabled ? theme.colors.gray[500] : theme.colors[variant][500],
         fontSize: theme.size[size],
+        paddingHorizontal: x,
+        paddingVertical: y,
       }}
     >
       {children}

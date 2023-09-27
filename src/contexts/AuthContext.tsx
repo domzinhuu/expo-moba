@@ -19,6 +19,7 @@ interface AuthContextProps {
   isLoadingUser: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => void;
+  updaetUser: (userData: UserDto) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextProps>(
@@ -46,13 +47,17 @@ export function AuthProvider({ children }: PropsWithChildren) {
     }
   }
 
+  async function updaetUser(userData: UserDto) {
+    await storageUserSave(userData);
+    setUser(userData);
+  }
   async function updateUserAndAToken(
     userData: UserDto,
     token?: string,
     refreshToken?: string
   ) {
     api.defaults.headers.common["Authorization"] = token;
-    setUser(userData);
+    await updaetUser(userData);
     setToken(token);
     setRefreshToken(refreshToken);
   }
@@ -65,7 +70,6 @@ export function AuthProvider({ children }: PropsWithChildren) {
       );
 
       if (accessToken && currentClient) {
-        
         await storageUserSave(currentClient);
         await storageSessionSave(accessToken, refreshToken);
       }
@@ -97,7 +101,15 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   return (
     <AuthContext.Provider
-      value={{ token, refreshToken, user, isLoadingUser, signIn, signOut }}
+      value={{
+        token,
+        refreshToken,
+        user,
+        isLoadingUser,
+        signIn,
+        signOut,
+        updaetUser,
+      }}
     >
       {children}
     </AuthContext.Provider>
